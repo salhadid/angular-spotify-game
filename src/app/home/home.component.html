@@ -1,10 +1,23 @@
 <div *ngIf="authLoading || configLoading">Loading...</div>
 <div *ngIf="!authLoading && !configLoading">
-  Genre:
-  <select [(ngModel)]="selectedGenre" (ngModelChange)="setGenre($event)">
-    <option [value]=""></option>
-    <option [value]="genre" *ngFor="let genre of genres">
-      {{ genre }}
-    </option>
-  </select>
+  <form [formGroup]="genreForm" (ngSubmit)="submitForm()">
+    <div>
+      <label for="genre">Genre:</label>
+      <select id="genre" formControlName="genre">
+        <option [value]=""></option>
+        <option [value]="genre" *ngFor="let genre of genres">
+          {{ genre }}
+        </option>
+      </select>
+    </div>
+    <div>
+      <label for="numSongs">Number of Songs (1-3):</label>
+      <input id="numSongs" formControlName="numSongs" type="number">
+    </div>
+    <div>
+      <label for="numArtists">Number of Artists (2-4):</label>
+      <input id="numArtists" formControlName="numArtists" type="number">
+    </div>
+    <button type="submit" [disabled]="genreForm.invalid">Submit</button>
+  </form>
 </div>
