@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import fetchFromSpotify from 'src/services/api';
 
+interface Track {
+  name: string;
+  preview_url: string | null;
+}
+
 @Component({
   selector: 'app-game',
   templateUrl: './game.component.html',
@@ -13,10 +18,10 @@ export class GameComponent implements OnInit {
   authLoading: boolean = false;
   configLoading: boolean = false;
   token: String = "";
-  songs : any[] = []
-  artists : any[] = []
+  songs : any[] = [];
+  artists : any[] = [];
   userData : any = [];
-  genre : String = ""
+  genre : String = "";
   numSongs : number = 1;
   numArtists: number = 2;
 
@@ -51,11 +56,16 @@ export class GameComponent implements OnInit {
     this.configLoading = true;
     const response = await fetchFromSpotify({
       token: t,
-      endpoint: `recommendations?seed_genres=${this.genre}&limit=${this.numSongs}`,
+      endpoint: `recommendations?seed_genres=${this.genre}&limit=${this.numSongs + 50}`,
     });
     console.log(response)
     console.log(response.tracks[0].artists[0].name);
-    this.songs = response.tracks;
+    this.songs = response.tracks.filter((track: Track) => track.preview_url !== null).slice(0, this.numSongs).map((track: Track) => {
+      return {
+        name: track.name,
+        url: track.preview_url
+      }
+    });
     this.configLoading = false;
   };
 }
