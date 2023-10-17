@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import fetchFromSpotify from 'src/services/api';
+import { Router } from '@angular/router';
 
 interface Artist {
   name: string;
@@ -29,7 +30,7 @@ interface SongData {
 })
 export class GameComponent implements OnInit {
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private router: Router) {}
 
   authLoading: boolean = false;
   configLoading: boolean = false;
@@ -116,9 +117,8 @@ export class GameComponent implements OnInit {
       song.correctGuess = false;
     }
   }
+
+  settingsPage() {
+    this.router.navigate(['/']);
+  }
 }
-
-
-// push the correct artist
-// loop with numArtists - 1
-// shuffly the array

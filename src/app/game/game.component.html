@@ -9,6 +9,7 @@
                 <p>{{ song.name }} by </p>
                 <p> {{ song.correctArtist }} </p>
                 <select [(ngModel)]="song.userGuess">
+                <option value="" selected disabled hidden>Select an artist</option>
                 <option *ngFor="let artist of song.potentialArtists">{{ artist }}</option>
                 </select>
                 <button (click)="checkGuess(song)">Check Guess</button>
@@ -19,6 +20,7 @@
         </li>
     </ul>
 </div>
+<button (click)="settingsPage()">Go Back to Home</button>
 
 
 <!-- {{ song.artists[0].name }} -->
