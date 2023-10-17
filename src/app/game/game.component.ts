@@ -16,17 +16,23 @@ export class GameComponent implements OnInit {
   songs : any[] = []
   artists : any[] = []
   userData : any = [];
+  genre : String = ""
+  numSongs : number = 1;
+  numArtists: number = 2;
 
 
   ngOnInit(): void {
     this.userData = this.userService.getUserData();
+    this.genre = this.userData.genre
+    this.numSongs = this.userData.numSongs
+    this.numArtists = this.userData.numArtists
     this.authLoading = true;
     this.userService.getToken().subscribe({
       next: response => {
         const accessToken = response.access_token;
         this.authLoading = false;
         this.token = accessToken;
-        this.fetchRecommendations(this.token)
+       // this.fetchRecommendations(this.token)
       },
       error: error => {
         console.error('Error:', error);
@@ -34,6 +40,9 @@ export class GameComponent implements OnInit {
       }
     });
     console.log('Genre Name:', this.userData.genre);
+    console.log('Song Name:', this.userData.numSongs);
+    console.log('Artist Name:', this.userData.numArtists);
+
   }
 
 
@@ -42,7 +51,7 @@ export class GameComponent implements OnInit {
     this.configLoading = true;
     const response = await fetchFromSpotify({
       token: t,
-      endpoint: "recommendations/available-genre-seeds",
+      endpoint: `recommendations?seed_genres=${this.genre}&limit=${this.numSongs}`,
     });
    
   };
