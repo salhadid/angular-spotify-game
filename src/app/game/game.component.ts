@@ -2,9 +2,21 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import fetchFromSpotify from 'src/services/api';
 
+interface Artist {
+  name: string;
+}
+
 interface Track {
   name: string;
   preview_url: string | null;
+  artists: Artist[];
+}
+
+interface SongData {
+  name: string;
+  url: string | null;
+  correctArtist: string;
+  potentialArtists: string[];
 }
 
 @Component({
@@ -13,13 +25,13 @@ interface Track {
   styleUrls: ['./game.component.css']
 })
 export class GameComponent implements OnInit {
+
   constructor(private userService: UserService) {}
 
   authLoading: boolean = false;
   configLoading: boolean = false;
   token: String = "";
-  songs : any[] = [];
-  artists : any[] = [];
+  songs : SongData[] = [];
   userData : any = [];
   genre : String = "";
   numSongs : number = 1;
@@ -50,6 +62,12 @@ export class GameComponent implements OnInit {
 
   }
 
+  shuffleArray(array: any[]): void {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+  }
 
 
   fetchRecommendations = async (t: any) => {
@@ -60,12 +78,37 @@ export class GameComponent implements OnInit {
     });
     console.log(response)
     console.log(response.tracks[0].artists[0].name);
+
+    const allArtists = response.tracks.map((track: Track) => track.artists[0].name);
+
     this.songs = response.tracks.filter((track: Track) => track.preview_url !== null).slice(0, this.numSongs).map((track: Track) => {
+
+      const correctArtist = track.artists[0].name;
+      const potentialArtists = [correctArtist];
+
+      while (potentialArtists.length < this.numArtists) {
+        const randomArtist = allArtists[Math.floor(Math.random() * allArtists.length)];
+        if (!potentialArtists.includes(randomArtist)) {
+          potentialArtists.push(randomArtist);
+        }
+      }
+
+      this.shuffleArray(potentialArtists);
       return {
         name: track.name,
-        url: track.preview_url
+        url: track.preview_url,
+        correctArtist,
+        potentialArtists
       }
     });
+
+
+
     this.configLoading = false;
   };
 }
+
+
+// push the correct artist
+// loop with numArtists - 1
+// shuffly the array

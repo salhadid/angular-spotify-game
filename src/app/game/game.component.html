@@ -7,6 +7,10 @@
                     <source [src]="song.url" type="audio/mpeg" />
                 </audio>
                 <p>{{ song.name }} by </p>
+                <p> {{ song.correctArtist }} </p>
+                <select>
+                <option *ngFor="let artist of song.potentialArtists">{{ artist }}</option>
+                </select>
         </li>
     </ul>
 </div>

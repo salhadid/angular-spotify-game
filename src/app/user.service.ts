@@ -19,8 +19,8 @@ export class UserService {
   }
 
   getToken(): Observable<any> {
-    const clientId = '5c879be09efc4815800e89e76d75c3b8';
-    const clientSecret = 'bf20090e32944342a0dc67dfd75e703a';
+    const clientId = '111230cb0a6e4eee9b8f9489b98e1009';
+    const clientSecret = '0966bac0a198455db62d489b4d35ddc9';
 
     const headers = new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded'
