@@ -32,7 +32,7 @@ export class GameComponent implements OnInit {
         const accessToken = response.access_token;
         this.authLoading = false;
         this.token = accessToken;
-       // this.fetchRecommendations(this.token)
+        this.fetchRecommendations(this.token)
       },
       error: error => {
         console.error('Error:', error);
@@ -53,9 +53,9 @@ export class GameComponent implements OnInit {
       token: t,
       endpoint: `recommendations?seed_genres=${this.genre}&limit=${this.numSongs}`,
     });
-   
+    console.log(response)
+    console.log(response.tracks[0].artists[0].name);
+    this.songs = response.tracks;
+    this.configLoading = false;
   };
-
-  
 }
-

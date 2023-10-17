@@ -30,13 +30,12 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  genres: String[] = ["House", "Alternative", "J-Rock", "R&B"];
-  selectedGenre: String = "";
+  genres: String[] = [];
   authLoading: boolean = false;
   configLoading: boolean = false;
   token: String = "";
 
-  
+
 
   ngOnInit(): void {
     this.authLoading = true;
@@ -66,10 +65,6 @@ export class HomeComponent implements OnInit {
     this.configLoading = false;
   };
 
-  setGenre(selectedGenre: any) {
-    this.selectedGenre = selectedGenre;
-    console.log(this.selectedGenre);
-  }
 
   submitForm() {
     if (this.genreForm.valid) {

@@ -19,8 +19,8 @@ export class UserService {
   }
 
   getToken(): Observable<any> {
-    const clientId = '5c879be09efc4815800e89e76d75c3b8'; // Replace with your Spotify client ID
-    const clientSecret = 'bf20090e32944342a0dc67dfd75e703a'; // Replace with your Spotify client secret
+    const clientId = '5c879be09efc4815800e89e76d75c3b8';
+    const clientSecret = 'bf20090e32944342a0dc67dfd75e703a';
 
     const headers = new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded'

@@ -1,1 +1,8 @@
-<p>game works!</p>
+<div *ngIf="authLoading || configLoading">Loading...</div>
+<div *ngIf="!authLoading && !configLoading">
+    <ul>
+        <li *ngFor="let song of songs">
+            {{ song.name }} by {{ song.artists[0].name }}
+        </li>
+    </ul>
+</div>
