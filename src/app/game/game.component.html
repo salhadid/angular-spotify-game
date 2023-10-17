@@ -2,10 +2,14 @@
 <div *ngIf="!authLoading && !configLoading">
     <ul>
         <li *ngFor="let song of songs">
-            <p>{{ song.name }} by {{ song.artists?.[0]?.name }}</p>
+
                 <audio controls>
                     <source [src]="song.url" type="audio/mpeg" />
                 </audio>
+                <p>{{ song.name }} by </p>
         </li>
     </ul>
 </div>
+
+
+<!-- {{ song.artists[0].name }} -->
