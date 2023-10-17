@@ -8,9 +8,14 @@
                 </audio>
                 <p>{{ song.name }} by </p>
                 <p> {{ song.correctArtist }} </p>
-                <select>
+                <select [(ngModel)]="song.userGuess">
                 <option *ngFor="let artist of song.potentialArtists">{{ artist }}</option>
                 </select>
+                <button (click)="checkGuess(song)">Check Guess</button>
+                <p *ngIf="song.guessMade">
+                    <ng-container *ngIf="song.correctGuess; else incorrectGuess">Correct!</ng-container>
+                    <ng-template #incorrectGuess>Wrong! Try Again!</ng-template>
+                </p>
         </li>
     </ul>
 </div>

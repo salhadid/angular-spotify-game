@@ -12,10 +12,22 @@ export class UserService {
 
   setUserData(genre: String, numSongs: number, numArtists: number) {
     this.userData = { genre, numSongs, numArtists };
+    // localStorage.setItem('userSettings', JSON.stringify(this.userData))
   }
 
   getUserData() {
+      // const savedData = JSON.parse(localStorage.getItem('userSettings') || '{}');
+      // this.userData = savedData;
+
     return this.userData;
+  }
+
+  getNumSongs() {
+    return this.userData.numSongs
+  }
+
+  getNumArtists() {
+    return this.userData.numArtists
   }
 
   getToken(): Observable<any> {

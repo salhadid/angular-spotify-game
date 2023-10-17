@@ -17,6 +17,9 @@ interface SongData {
   url: string | null;
   correctArtist: string;
   potentialArtists: string[];
+  userGuess?: string;
+  correctGuess?: boolean;
+  guessMade?: boolean | null;
 }
 
 @Component({
@@ -98,14 +101,21 @@ export class GameComponent implements OnInit {
         name: track.name,
         url: track.preview_url,
         correctArtist,
-        potentialArtists
+        potentialArtists,
+        guessMade: false
       }
     });
-
-
-
     this.configLoading = false;
   };
+
+  checkGuess(song: SongData): void {
+    song.guessMade = true;
+    if (song.userGuess === song.correctArtist) {
+      song.correctGuess = true;
+    } else {
+      song.correctGuess = false;
+    }
+  }
 }
 
 
