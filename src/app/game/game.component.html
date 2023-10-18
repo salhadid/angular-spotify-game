@@ -1,26 +1,36 @@
 <div *ngIf="authLoading || configLoading">Loading...</div>
 <div *ngIf="!authLoading && !configLoading">
     <ul>
-        <li *ngFor="let song of songs">
-
+        <li *ngIf="index < songs.length">
                 <audio controls>
-                    <source [src]="song.url" type="audio/mpeg" />
+                    <source [src]="songs[index].url" type="audio/mpeg" />
                 </audio>
-                <p>{{ song.name }} by </p>
-                <p> {{ song.correctArtist }} </p>
-                <select [(ngModel)]="song.userGuess">
+                <p>{{ songs[index].name }} by </p>
+                <p> {{ songs[index].correctArtist }} </p>
+                <select *ngIf="songs[index].numGuesses"[(ngModel)]="songs[index].userGuess">
                 <option value="" selected disabled hidden>Select an artist</option>
-                <option *ngFor="let artist of song.potentialArtists">{{ artist }}</option>
+                <option *ngFor="let artist of songs[index].potentialArtists">{{ artist }}</option>
                 </select>
-                <button (click)="checkGuess(song)">Check Guess</button>
-                <p *ngIf="song.guessMade">
-                    <ng-container *ngIf="song.correctGuess; else incorrectGuess">Correct!</ng-container>
-                    <ng-template #incorrectGuess>Wrong! Try Again!</ng-template>
+                <div>
+                <button *ngIf="songs[index].numGuesses"(click)="checkGuess(songs[index])">Check Guess</button>
+                </div>
+                <div>
+                <p> Question {{ index + 1 }} / {{ songs.length }}
+                </div>
+                <p *ngIf="songs[index].guessMade">
+                    <ng-container *ngIf="songs[index].correctGuess; else incorrectGuess">Correct!</ng-container>
+                    <ng-template #incorrectGuess>Wrong!
+                        <ng-container *ngIf="songs[index].numGuesses; else over"> Try again!You have {{ songs[index].numGuesses }} left</ng-container>
+                        <ng-template #over > You have no guesses left. Game over!</ng-template>
+                    </ng-template>
                 </p>
         </li>
+
     </ul>
+   <p *ngIf="index == songs.length">
+        Congrats! You have guessed all the correct answers!
+   </p>
 </div>
+
 <button (click)="settingsPage()">Go Back to Home</button>
 
-
-<!-- {{ song.artists[0].name }} -->

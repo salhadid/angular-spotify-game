@@ -14,6 +14,7 @@ interface Track {
 }
 
 interface SongData {
+  numGuesses: number;
   name: string;
   url: string | null;
   correctArtist: string;
@@ -40,6 +41,7 @@ export class GameComponent implements OnInit {
   genre : String = "";
   numSongs : number = 1;
   numArtists: number = 2;
+  index : number = 0;
 
 
   ngOnInit(): void {
@@ -103,7 +105,8 @@ export class GameComponent implements OnInit {
         url: track.preview_url,
         correctArtist,
         potentialArtists,
-        guessMade: false
+        guessMade: false,
+        numGuesses : this.numArtists-1
       }
     });
     this.configLoading = false;
@@ -113,8 +116,10 @@ export class GameComponent implements OnInit {
     song.guessMade = true;
     if (song.userGuess === song.correctArtist) {
       song.correctGuess = true;
+      this.index++
     } else {
       song.correctGuess = false;
+      song.numGuesses--
     }
   }
 
