@@ -23,10 +23,8 @@
                         <ng-container *ngIf="songs[index].numGuesses; else over"> Try again!You have {{ songs[index].numGuesses }} left</ng-container>
                         <ng-template #over > You have no guesses left. Game over!</ng-template>
                     </ng-template>
-
                 </p>
         </li>
-
     </ul>
    <p *ngIf="index == songs.length">
         Congrats! You have guessed all the correct answers!
@@ -34,7 +32,3 @@
 </div>
 
 <button (click)="settingsPage()">Go Back to Home</button>
-
-
-
-<!-- {{ song.artists[0].name }} -->
