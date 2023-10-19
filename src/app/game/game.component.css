@@ -1,0 +1,57 @@
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 30px;
+    border: 1px solid #ccc;
+     border-radius: 5px;
+    background-color: #ffc0cb;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  li {
+    margin-bottom: 20px;
+  }
+  
+  audio {
+    width: 100%;
+  }
+  
+  p {
+    margin: 5px 0;
+  }
+  
+  select, button {
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 16px;
+  }
+  
+  button {
+    cursor: pointer;
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .game-over-message {
+    font-size: 20px;
+    font-weight: bold;
+    color: green;
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .button-container {
+    text-align: center;
+    margin-top: 20px;
+  }

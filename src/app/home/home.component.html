@@ -1,5 +1,6 @@
 <div *ngIf="authLoading || configLoading">Loading...</div>
 <div *ngIf="!authLoading && !configLoading">
+  <div class="container">
   <form [formGroup]="genreForm" (ngSubmit)="submitForm()">
     <div>
       <label for="genre">Genre:</label>
@@ -20,4 +21,5 @@
     </div>
     <button type="submit" [disabled]="genreForm.invalid">Submit</button>
   </form>
+</div>
 </div>
