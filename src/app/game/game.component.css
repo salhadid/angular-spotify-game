@@ -1,0 +1,77 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 95vh;
+}
+
+.container div {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+h2 {
+    text-align: center;
+    font-size: 1.8em;
+    color: black;
+}
+
+.audio-container {
+    border: 2px solid #555;
+    padding: 20px 50px;
+    text-align: center;
+    background-color: #aacde9;
+    font-size: 1.5em;
+    color: black;
+    border-radius: 10px;
+    width: 80%;
+}
+
+.disabled {
+    background-color: #555;
+    color: #fff;
+    cursor: default;
+}
+
+button {
+    font-size: 1.2em;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+button.go-home {
+    float: right;
+    margin-right: 10px;
+}
+
+button:disabled {
+    background-color: #555;
+    color: #fff;
+    cursor: default;
+}
+
+div.button-wrapper {
+    width: 100%;
+    clear: both;
+    text-align: right;
+    margin-top: -30px;
+}
+
+select {
+    margin-bottom: 20px;
+    width: 30%;
+    color: #000;
+}
+
+select option:disabled {
+    color: #888;
+}
+
+select option:disabled {
+    color: #888;
+}

@@ -1,8 +1,9 @@
 <div *ngIf="authLoading || configLoading">Loading...</div>
-<div *ngIf="!authLoading && !configLoading">
-  <form [formGroup]="genreForm" (ngSubmit)="submitForm()">
+<div class="container" *ngIf="!authLoading && !configLoading">
+<h1>The Spotify Game</h1>
+  <form class="form-box" [formGroup]="genreForm" (ngSubmit)="submitForm()">
     <div>
-      <label for="genre">Genre:</label>
+      <label for="genre">Choose a Music Genre:</label>
       <select id="genre" formControlName="genre">
         <option [value]=""></option>
         <option [value]="genre" *ngFor="let genre of genres">
