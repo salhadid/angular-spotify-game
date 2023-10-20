@@ -7,7 +7,7 @@
             <audio controls>
                 <source [src]="songs[index].url" type="audio/mpeg" />
             </audio>
-            <!--<p>{{ songs[index].correctArtist }}</p>-->
+            <p> Select a Song </p>
             <select
                 *ngIf="songs[index].numGuesses"
                 [(ngModel)]="songs[index].userGuess"

@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
     private router: Router
   ) {
     this.genreForm = this.formBuilder.group({
-      genre: ['', Validators.required],
+      genre: [this.userService.getGenre() || '', Validators.required],
       numSongs: [(this.userService.getNumSongs() || 1), [Validators.required, Validators.min(1), Validators.max(3)]],
       numArtists: [(this.userService.getNumArtists() || 2), [Validators.required, Validators.min(2), Validators.max(4)]]
     });
@@ -34,13 +34,11 @@ export class HomeComponent implements OnInit {
   authLoading: boolean = false;
   configLoading: boolean = false;
   token: String = "";
-  // userData: any = {};
 
 
 
   ngOnInit(): void {
     this.authLoading = true;
-    // this.userData = this.userService.getUserData;
     this.userService.getToken().subscribe({
       next: response => {
         const accessToken = response.access_token;

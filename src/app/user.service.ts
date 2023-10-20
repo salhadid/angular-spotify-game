@@ -12,13 +12,9 @@ export class UserService {
 
   setUserData(genre: String, numSongs: number, numArtists: number) {
     this.userData = { genre, numSongs, numArtists };
-    // localStorage.setItem('userSettings', JSON.stringify(this.userData))
   }
 
   getUserData() {
-      // const savedData = JSON.parse(localStorage.getItem('userSettings') || '{}');
-      // this.userData = savedData;
-
     return this.userData;
   }
 
@@ -29,10 +25,13 @@ export class UserService {
   getNumArtists() {
     return this.userData.numArtists
   }
+  getGenre() {
+    return this.userData.genre;
+  }
 
   getToken(): Observable<any> {
-    const clientId = '111230cb0a6e4eee9b8f9489b98e1009';
-    const clientSecret = '0966bac0a198455db62d489b4d35ddc9';
+    const clientId = '5c879be09efc4815800e89e76d75c3b8';
+    const clientSecret = 'bf20090e32944342a0dc67dfd75e703a';
 
     const headers = new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded'
