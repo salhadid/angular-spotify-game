@@ -29,6 +29,9 @@ export class UserService {
   getNumArtists() {
     return this.userData.numArtists
   }
+  getGenre() {
+    return this.userData.genre;
+  }
 
   getToken(): Observable<any> {
     const clientId = '111230cb0a6e4eee9b8f9489b98e1009';
