@@ -64,8 +64,9 @@ div.button-wrapper {
 
 select {
     margin-bottom: 20px;
-    width: 30%;
+    width: 80%;
     color: #000;
+    margin-top: 20px;
 }
 
 select option:disabled {
